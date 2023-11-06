@@ -6,6 +6,7 @@ import mongoose, { connect } from 'mongoose'
 import routerProductos from './routers/productos.router.js'
 import routerUpload from './routers/upload.router.js'
 import routerCarrito from './routers/carrito.router.js'
+import handleConnection from './utils/handleConnection.js'
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -14,16 +15,7 @@ const corsConfig = {
     origin: 'http://localhost:2222'
 }
 
-const conectar = async () => {
-  try {
-    await mongoose.connect(process.env.URI_MLOCAL)
-    console.log("Conexión a mongo existosa.")
-  } catch (error) {
-    console.log("Error al conectar a mongo.")
-  }
-}
-
-conectar()
+handleConnection(process.env.URI_MLOCAL);
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())

@@ -1,4 +1,5 @@
 import models from '../models/productos.model.js'
+import handleError from '../utils/handleError.js'
 
 const obtenerProductos = async (req, res) => {
     let id = req.params.id
@@ -13,6 +14,7 @@ const obtenerProductos = async (req, res) => {
     } catch (error) {
         console.log("no se pudo acceder a los productos", error)
         res.status(500).send('[obteerProductos]: No se pudo acceder a los productos')
+        handleError(res, `[obtenerProductos] error en la operación ${error.message} - No se pudo acceder a los productos.`)
     }
 }
 const guardarProducto = async (req, res) => {
@@ -23,7 +25,7 @@ const guardarProducto = async (req, res) => {
         const productoGuardado = await models.guardarProducto(producto)
         res.status(201).json(productoGuardado)
     } catch (error) {
-        return res.status(500).send('Error al guardar el producto')
+        handleError(res, `[guardarProductos] error en la operación ${error.message} - Error al guardar producto.`)
     }
 }
 const actualizarProducto = async (req, res) =>{
@@ -35,18 +37,17 @@ const actualizarProducto = async (req, res) =>{
         res.status(200).json(productoActualizado)
     } catch (error) {
         console.log('No se pudo actualizar el producto', error)
-        res.status(500).send('No se pudo actualizar el producto')
+        handleError(res, `[actualizarProducto] error en la operación ${error.message} - Error al actualizar el producto.`)
     }
 }
 const borrarProducto = (req, res) =>{
-    const { id } = req.params
+    const id = req.params.id
     try {
         const productoBorrado = models.borrarProducto(id)
         res.status(200).json(productoBorrado)
     } catch (error) {
-        res.status(500).send(`No se pudo borrar el producto`)
+        handleError(res, `[borrarProducto] error en la operación ${error.message} - Error al eliminar el producto.`)
     }
-    res.send('DELETE (DELETE)')
 }
 
 export default {
