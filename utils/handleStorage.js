@@ -2,7 +2,7 @@ import multer from "multer"
 import path from 'node:path'
 import { v4 as uuidv4 } from 'uuid'
 
-const sotrage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: function(req, file, cb){
         const rutaDeAlmacenamiento = path.join('public', 'uploads')
         cb(null, rutaDeAlmacenamiento)
