@@ -3,6 +3,7 @@ import 'dotenv/config'
 import cors from 'cors'
 import routerProductos from './routers/productos.router.js'
 import mongoose, { connect } from 'mongoose'
+import routerUpload from './routers/upload.router.js'
 const app = express()
 const PORT = process.env.PORT || 3000
 
@@ -26,6 +27,7 @@ app.use(express.json())
 app.use(cors(corsConfig))
 // ENRUTAMIENTO POR DEFECTO
 app.use('/api/productos', routerProductos)
+app.use('/api/upload', routerUpload)
 
 app.all('*', (req, res) =>{
     res.status(404).send(`La ruta ${req.url} utilizando el ${req.method} no está disponible`)

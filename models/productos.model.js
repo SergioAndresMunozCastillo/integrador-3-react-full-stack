@@ -13,11 +13,12 @@ const productosSchema = mongoose.Schema({
 
 const ProductosModel = mongoose.model('productos', productosSchema)
 
-const leerProducto = (id) => {
+const leerProducto = async (id) => {
     try {
-        
+        const producto = await ProductosModel.findById(id)
+        return producto
     } catch (error) {
-        
+        console.log(`[leerProducto]: Algo no salió bien... ${error}`)
     }
 }
 
@@ -42,8 +43,13 @@ const guardarProducto = async (productoNuevo) =>{
     }
 }
 
-const modificarProducto = (id, productoAEditar) => {
-
+const modificarProducto = async (id, productoAEditar) => {
+    try {
+        const productoModificado = await ProductosModel.findByIdAndUpdate(id, productoAEditar)
+        return productoModificado
+    } catch (error) {
+        console.log('[Actualizar producto] algo no salió bien', error)
+    }
 }
 
 const eliminarProducto = async (id) =>{
