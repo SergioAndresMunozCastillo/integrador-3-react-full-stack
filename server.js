@@ -15,7 +15,7 @@ const corsConfig = {
     origin: 'http://localhost:2222'
 }
 
-handleConnection(process.env.URI_MLOCAL);
+handleConnection(process.env.URI_MREMOTA);
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())

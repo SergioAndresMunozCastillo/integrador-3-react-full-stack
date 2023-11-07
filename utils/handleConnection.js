@@ -5,7 +5,7 @@ const handleConnection = async (uri) => {
       await mongoose.connect(uri)
       console.log("Conexión a mongo existosa.")
     } catch (error) {
-      console.log("Error al conectar a mongo.")
+      console.log("Error al conectar a mongo.", error)
     }
   }
 
