@@ -4,7 +4,7 @@ import productoMiddleware from "../middlewares/productos.middleware.js";
 const productoDeleteValidator = [
     check('id')
         .isMongoId()
-        .withMessage('Envio información incorrecta para el borrado'),
+        .withMessage('Envío información incorrecta para el borrado'),
     productoMiddleware
 ]
 
@@ -16,7 +16,10 @@ const productoCreateValidator = [
     productoMiddleware
 ]
 
+// productoUpdateValidator
+// productoReadOneValidator
+
 export default {
-    productoDeleteValidator,
-    productoCreateValidator
+    productoCreateValidator,
+    productoDeleteValidator
 }

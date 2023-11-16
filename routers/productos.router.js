@@ -1,16 +1,29 @@
 import express from 'express'
+const routerProductos = express.Router()
+
 import controller from '../controllers/productos.controller.js'
-import productoMiddleware from '../middlewares/productos.middleware.js';
-import validator from '../validators/productos.validator.js';
+import validator from '../validators/productos.validator.js'
 
-const routerProductos = express.Router();
+/* ------------------------------------------------ */
+/* CRUD -> CREATE | READ | UPDATE | DELETE          */
+/* ------------------------------------------------ */
 
-routerProductos.get('/:id?', controller.obtenerProductos)
+// ! GET ALL / ONE (READ) - request de todos los productos
+// http://localhost:8080/api/productos/ | GET
+
+routerProductos.get('/:id?', controller.obtenerProductos)  // :id? params no obligatorio
+// ! POST (CREATE) - request para agregar un producto
+// http://localhost:8080/api/productos/ | POST
 
 routerProductos.post('/', validator.productoCreateValidator, controller.guardarProducto)
+// ! PUT (UPDATE) - request para actualizar un producto
+// http://localhost:8080/api/productos/id | PUT
 
 routerProductos.put('/:id', controller.actualizarProducto)
+// ! DELETE (DELETE) - request para eliminar un producto
+// http://localhost:8080/api/productos/id | DELETE
 
 routerProductos.delete('/:id', validator.productoDeleteValidator, controller.borrarProducto)
 
 export default routerProductos
+
