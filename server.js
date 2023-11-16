@@ -18,7 +18,7 @@ const corsConfig = {
 
 // ! CONEXIÓN MONGODB
 
-handleConnection(process.env.URI_MLOCAL)
+handleConnection(process.env.URI_MREMOTA)
 //handleConnection(process.env.URI_MREMOTA)
 
 // ! Middlewares
