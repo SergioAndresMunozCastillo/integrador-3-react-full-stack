@@ -13,13 +13,56 @@ const productoCreateValidator = [
         .notEmpty()
         .withMessage('El nombre es requerido')
         .trim(),
+    check('precio')
+        .isNumeric()
+        .withMessage('El precio debe ser de valor numérico.')
+        .trim(),
+    check('stock')
+        .isNumeric()
+        .withMessage('El precio debe ser de valor numérico.')
+        .trim(),
+    check('marca')
+        .notEmpty()
+        .withMessage('La marca es requerida')
+        .trim(),
     productoMiddleware
 ]
 
 // productoUpdateValidator
+const productoUpdateValidator = [
+    check('id')
+        .isMongoId()
+        .withMessage('No se envío el identificador válido para actualizar'),
+    check('nombre')
+        .notEmpty()
+        .withMessage('El nombre es requerido')
+        .trim(),
+    check('precio')
+        .isNumeric()
+        .withMessage('El precio debe ser de valor numérico.')
+        .trim(),
+    check('stock')
+        .isNumeric()
+        .withMessage('El precio debe ser de valor numérico.')
+        .trim(),
+    check('marca')
+        .notEmpty()
+        .withMessage('La marca es requerida')
+        .trim(),
+    productoMiddleware
+];
 // productoReadOneValidator
+const productoReadOneValidator = [
+    check('id')
+        .optional()
+        .isMongoId()
+        .withMessage('El identificador es de formato incorrecto'),
+        productoMiddleware
+]
 
 export default {
     productoCreateValidator,
-    productoDeleteValidator
+    productoDeleteValidator,
+    productoUpdateValidator,
+    productoReadOneValidator
 }
